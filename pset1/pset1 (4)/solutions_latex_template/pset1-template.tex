@@ -1,0 +1,245 @@
+%
+% 6.006 problem set 1 solutions template
+%
+\documentclass[12pt,twoside]{article}
+
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{qtree}
+
+\input{macros}
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+\newcommand{\theproblemsetnum}{1}
+\newcommand{\releasedate}{Tuesday, September 13}
+\newcommand{\partaduedate}{Tuesday, September 27}
+\newcommand{\tabUnit}{3ex}
+\newcommand{\tabT}{\hspace*{\tabUnit}}
+
+\title{6.006 Problem Set 1}
+
+\begin{document}
+
+\handout{Problem Set \theproblemsetnum}{September 13, 2016}
+
+\textbf{All parts are due {\bf \partaduedate} at {\bf 11:59PM}}.
+
+\setlength{\parindent}{0pt}
+
+\medskip
+
+\hrulefill
+
+\medskip
+
+{\bf Name:} Dimitris Koutentakis
+
+\medskip
+
+{\bf Collaborators:} Driss Hafdi
+
+\medskip
+
+\hrulefill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% See below for common and useful latex constructs. %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Some useful commands:
+%$f(x) = \Theta(x)$
+%$T(x, y) \leq \log(x) + 2^y + \binom{2n}{n}$
+% {\tt code\_function}
+
+
+% You can create unnumbered lists as follows:
+%\begin{itemize}
+%    \item First item in a list 
+%        \begin{itemize}
+%            \item First item in a list 
+%                \begin{itemize}
+%                    \item First item in a list 
+%                    \item Second item in a list 
+%                \end{itemize}
+%            \item Second item in a list 
+%        \end{itemize}
+%    \item Second item in a list 
+%\end{itemize}
+
+% You can create numbered lists as follows:
+%\begin{enumerate}
+%    \item First item in a list 
+%    \item Second item in a list 
+%    \item Third item in a list
+%\end{enumerate}
+
+% You can write aligned equations as follows:
+%\begin{align} 
+%    \begin{split}
+%        (x+y)^3 &= (x+y)^2(x+y) \\
+%                &= (x^2+2xy+y^2)(x+y) \\
+%                &= (x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3) \\
+%                &= x^3+3x^2y+3xy^2+y^3
+%    \end{split}                                 
+%\end{align}
+
+% You can create grids/matrices as follows:
+%\begin{align}
+%    A = 
+%    \begin{bmatrix}
+%        A_{11} & A_{21} \\
+%        A_{21} & A_{22}
+%    \end{bmatrix}
+%\end{align}
+
+\begin{problems}
+
+\section*{Part A}
+
+\problem  % Problem 1
+
+\begin{problemparts}
+\problempart
+By logarithm rules, we get the following increasing order: 
+$f_{5} < f_{2} < f_{3} < f_{1} < f_{4}$  % Problem 1a
+\problempart 
+Again, by logarithm rules, we get the following order:
+$f_1<f_6<f_3<f_5<f_2<f_4$
+\problempart 
+By comparing the functions, we conclude that:
+$f_5<f_1<f_2<f_4<f_3$
+\end{problemparts}
+
+\problem  % Problem 2
+
+\begin{problemparts}
+\problempart 
+\begin{enumerate}
+
+\item
+From the Master Theorem, we have the 3rd case, hence:
+\newline
+\begin{align}
+	T(n)=\Theta(n^2)
+\end{align} 
+\item
+From first case of the Master Theorem, we have:
+\begin{align}
+T(n)=\Theta(n^\frac{lg(10)}{lg(3)})
+\end{align}
+
+\item
+\begin{itemize}
+\item
+\underline{Master Theorem:}
+From second case of the Master Theorem:
+\begin{align}
+T(n)=\Theta(nlog(n))
+\end{align}
+
+\item
+\underline{Recursion Tree Method:}
+\begin{align}
+\Tree[.n [.n/2 [.n/4 [.n/8 [.... $\frac{n}{2^h}$ $\frac{n}{2^h}$ ] ] [.n/8 [.... $\frac{n}{2^h}$ $\frac{n}{2^h}$ ] ] ] [.n/4 [.n/8 [.... $\frac{n}{2^h}$ $\frac{n}{2^h}$ ] ] [.n/8 [.... $\frac{n}{2^h}$ $\frac{n}{2^h}$ ] ] ] ] [.n/2 [.n/4 [.n/8 [.... $\frac{n}{2^h}$ $\frac{n}{2^h}$ ] ] [.n/8 [.... $\frac{n}{2^h}$ $\frac{n}{2^h}$ ] ] ] [.n/4 [.n/8 [.... $\frac{n}{2^h}$ $\frac{n}{2^h}$ ] ] [.n/8 [.... $\frac{n}{2^h}$ $\frac{n}{2^h}$ ] ] ] ] ] 
+\end{align}
+
+The height of the tree h is $lg(n)$. The number of leaves is n. Thus, the time it will take is: 
+\begin{align}
+T(n)=\Theta(nlog(n))
+\end{align}
+\end{itemize}
+\item
+\begin{align}
+T(n)=T(n/2)+cn=T(n/4)+cn+cn/2=...=c(1+1/2+1/4+...)=O(log(n))
+\end{align}
+\end{enumerate}
+\problempart 
+\begin{enumerate}
+\item
+\begin{align}
+T(n)=T(n-1)+O(1)
+\end{align}
+\item
+\begin{align}
+T(n)=T(n-1)+T(n-2)+O(1)
+\end{align}
+\end{enumerate}
+\end{problemparts}
+
+\problem  % Problem 3
+
+\begin{problemparts}
+\problempart 
+\begin{enumerate}
+\item
+Without loss of generality, we can take the case that the different color cell is on the top left. Then if A[0][k]==A[n-1][k] then the unbalanced sub-array will be on the left of the column k, since the only cell colored differently will still be the one on the top left.Then the unbalanced sub-array will have corners: (A[0][k],A[n-1][k], A[0][0],A[n-1][0]) Otherwise, the unbalanced sub-array will be on the right, since the only different corner cell will be one of the two in column k. Then the unbalanced sub-array will have corners: (A[0][k],A[n-1][k], A[0][n-1],A[n-1][n-1])
+\item
+All we have to do in order to find a peak square is repeat the above method until n=m=2 with $k=\lfloor n=2 \rfloor$. After that, we will repeat the test on the other dimension, with $k=\lfloor m=2 \rfloor$.
+\item
+Recurrence relation:
+\begin{align}
+T(n)=O(1)+T(n/2)
+\end{align}
+By the master theorem, the running time of this relation will be T(n)=O(log(n)).
+\end{enumerate}
+\problempart 
+\begin{enumerate}
+\item
+In order to find a circular sub array, I would split the original array into A[0:k] and A[k+1:n-1], and choose the one that includes the maximum of the four values.
+\item
+After picking a sub-array in the way described above, I would recurse on that circular sub array, until there are only 4 values and then choose the maximum of the four as a peak.
+The time for that would be:
+\begin{align}
+T(n)=T(n/2)+c=T(n/4)+c/2=...=c(1+1/2+1/4+...)=O(log(n)
+\end{align}
+
+\end{enumerate}
+
+\end{problemparts}
+
+\section*{Part B}
+
+\problem
+\begin{problemparts}
+\problempart \emph{On alg.csail.mit.edu}
+\problempart \emph{On alg.csail.mit.edu}
+\problempart \emph{On alg.csail.mit.edu}
+\problempart 
+For any part of the program, the initialization of the class would take 
+
+\begin{align}
+T(n)=O(nm)+O(n^2m)+O(m)+O(n) \\ \Rightarrow T(n)=O(n^2m)
+\end{align}
+My part (b) would have a run-time of:
+\begin{align}
+T(n)=O(n)+O(k)+O(1)+O(m) \\ \Rightarrow T(n)=O(m+n+k)
+\end{align}
+
+Finally, part c would have a run-time of:
+\begin{align}
+T(n)=O(qn)+O(k) \\ \Rightarrow T(n)=O(qn+k)
+\end{align}
+
+Hence, we can see that the slowest part would be the initialization with
+$T(n)=O(n^2m)$
+\problempart 
+\begin{enumerate}
+\item
+We can see that in general, TF\_IDF will give a more intuitive result, since it gives importance on the rarity of the word, thus it gives a more specific result. However, there are some cases, such as with the terms \emph{"Lime"} or \emph{"Apple"}, where the first method is better, because it gives a more general result, instead of presenting only the "technical" side.
+\item
+It is logical to assume that longer documents would have words appearing more times than shorter documents. That means that the TF\_IDF might end up promoting longer documents just because they have more words, instead of promoting documents that have a bigger ratio of the word appearing. In order to solve that, we could divide the TF with the length of the document. 
+\item
+The 3 first results for part (a) are: "Apple Inc" with a score of 0.4488, "Banana" with a score of 0.4518, and "Tomato" with a score of 0.4558. The 3 first results for part (b) are: "Apple Inc" with a score of 1.37, "Macintosh" with a score of 1.48, and "Pear" with a score of 1.48. We can see that the first method results in a more general answer, whereas the second one gives a more narrow result. In my opinion, the method that works better is the first one in this case, because it doesn't limit the results to Apple Inc related articles. However, that depends greatly on what one is looking for. \\ In order to improve TF\_IDF in this case, we could make it such that it ignores the word in the title of the original document when looking for similarities between documents. That would place a bigger importance on other words. For example it is logical to expect that the word "Apple" appears many times in anything related to "Apple Inc", however, if we ignore the term "apple" because it was in the title of the first document, a bigger importance will be placed on other words such as "fruit", "red", "computer" etc.
+
+\end{enumerate}
+\end{problemparts}
+
+\end{problems}
+
+\end{document}
+
